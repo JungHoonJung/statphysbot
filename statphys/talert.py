@@ -1,4 +1,5 @@
 from .bot import bot
+from .auth import auth_user
 import sys, os
 import datetime as dt
 from io import StringIO
