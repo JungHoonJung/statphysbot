@@ -17,6 +17,7 @@ class talertBase:
     def __init__(self, bot, target):
         self.bot = bot
         self.name = None
+        self.target = target
 
     def __enter__(self):
         self.stdout = StringIO()
