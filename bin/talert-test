@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+import statphys
+
+with statphys.talert:
+    print('test')
