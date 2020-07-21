@@ -3,8 +3,9 @@ from .auth import auth_user
 import sys, os
 import datetime as dt
 from io import StringIO
+from IPython.core.magic import register_cell_magic
 
-__all__ = ['talert']
+__all__ = ['talert','telegram']
 
 def running_with_talert(bash_command):
     pass
@@ -52,5 +53,18 @@ class talertBase:
     def __call__(self, work_name = None):
         self.name = work_name
         return self
+
+
+
+
+@register_cell_magic
+def telegram(line, cell):
+    "Magic that works both as %lcmagic and as %%lcmagic"
+    global talert
+    if not line:
+        line = None
+    with talert(line):
+        get_ipython().run_cell(cell)
+
 
 talert = talertBase(bot, target_id)
