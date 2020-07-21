@@ -47,8 +47,8 @@ class talertBase:
 
         self.bot.send_message(chat_id = self.target, text = text)
 
-    def __call__(self, value = None):
-        self.name = value
+    def __call__(self, work_name = None):
+        self.name = work_name
         return self
 
 talert = talertBase(bot, target_id)
