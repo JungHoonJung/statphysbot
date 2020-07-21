@@ -64,7 +64,7 @@ def telegram(line, cell):
     if not line:
         line = None
     with talert(line):
-        get_ipython().run_cell(cell)
+        get_ipython().run_cell(cell).raise_error()
 
 
 talert = talertBase(bot, target_id)
