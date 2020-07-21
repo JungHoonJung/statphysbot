@@ -38,14 +38,14 @@ class talertBase:
             stdout.insert(0, "{}중에 에러가 발생하였습니다.\r\n".format(work_name))
             stdout.append('에러 발생 코드를 확인해주세요\r\n')
         else:
-            stdout.insert(0, "{}이 완료되었습니다.\r\n".format(work_name))
+            stdout.insert(0, "{}이 완료되었습니다.\r\nOutput : \r\n".format(work_name))
 
         text = ''
         for line in stdout:
             text+=line
 
         total_time = dt.datetime.now()-self.start_time
-
+        text+=f'\r\n총 작업 시간 : {total_time}'
 
         self.bot.send_message(chat_id = self.target, text = text)
 
