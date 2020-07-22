@@ -2,10 +2,12 @@ from .bot import bot
 from .auth import auth_user
 import sys, os
 import datetime as dt
-from io import StringIO
+from io import StringIO, BytesIO
 from IPython.core.magic import register_cell_magic
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 
-__all__ = ['talert','telegram']
+__all__ = ['talert','telegram','telegramfig']
 
 def running_with_talert(bash_command):
     pass
@@ -55,7 +57,13 @@ class talertBase:
         return self
 
 
-
+def figtotelegram(fig, format='png', *arg, **kwarg):
+    '''send figure to telegram with specified format through plt.savefig(name, *arg,**kwarg)
+    See reference of `plt.savefig`.'''
+    buf = BytesIO()
+    fig.savefig(buf, format=format, *arg,**kwarg)
+    buf.seek(0)
+    talert.bot.send_photo(target_id, photo=buf)
 
 @register_cell_magic
 def telegram(line, cell):
@@ -64,7 +72,8 @@ def telegram(line, cell):
     if not line:
         line = None
     with talert(line):
-        get_ipython().run_cell(cell).raise_error()
+        cell_exe = get_ipython().run_cell(cell)
+        cell_exe.raise_error()
 
 
 talert = talertBase(bot, target_id)
