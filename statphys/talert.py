@@ -7,7 +7,7 @@ from IPython.core.magic import register_cell_magic
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
-__all__ = ['talert','telegram','telegramfig']
+__all__ = ['talert','telegram','figtotelegram']
 
 def running_with_talert(bash_command):
     pass
