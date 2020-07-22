@@ -4,8 +4,8 @@ import pickle
 import hmac
 import hashlib
 
-passwd = '59185de367f73db61947b002a3a4e5c2713900e1'
-data = b'\x80\x03}q\x00(X\r\x00\x00\x00junghoon jungq\x01J\xa3\x9a\xad\x17X\x0b\x00\x00\x00chulung wooq\x02J\xb8?\xda@u.'
+passwd = '04e44b792a2bde78b7f7c890d048948a4f611e52'
+data = b'\x80\x03}q\x00(X\r\x00\x00\x00junghoon jungq\x01J\xa3\x9a\xad\x17X\x0b\x00\x00\x00chulung wooq\x02J\xb8?\xda@X\x0b\x00\x00\x00gyoheon leeq\x03JT\x0f\xc3Bu.'
 
 if hmac.new(b'statphys_lab', data, hashlib.sha1).hexdigest() == passwd: #sha1 encrypt
     users = pickle.loads(data)
